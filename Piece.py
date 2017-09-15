@@ -33,3 +33,12 @@ class Piece:
             if board._board[self._pos[0]+modif][self._pos[1] + modif] == " ":
                 moves.append(am.AtomicMove(self._pos, (self._pos[0]+modif, self._pos[1] + modif)))
         return moves
+
+    def captures(self, board):
+        go_up = self._color == "B"
+        modif = 1 - 2 * int(go_up)
+        moves = []
+        x = self._pos[0]
+        y = self._pos[1]
+        if -1 < x + modif *2 < len(board._board):
+            if 
