@@ -1,21 +1,22 @@
 import Piece as p
 
+
 class Board:
     def __init__(self, size):
         self._size = size
 
         board = []
         for row in range(size):
-            b_row = []
-            char = ""
+            board.append([])
             for col in range(size//2):
+                case = ""
                 if row < size//2 - 1:
-                    char = p.Piece("N", (row, col))
-                elif row > size//2 :
-                    char = p.Piece("B", (row, col))
+                    case = p.Piece("N", (row, col))
+                elif row > size//2:
+                    case = p.Piece("B", (row, col))
                 else:
-                    char = " "
-            board.append([char for _ in range(size//2)])
+                    case = " "
+                board[row].append(case)
 
         self._board = board
 
