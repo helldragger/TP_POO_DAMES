@@ -1,5 +1,7 @@
-class Capture:
+import AtomicMove as am
+
+
+class Capture(am.AtomicMove):
     def __init__(self, start, capture, end):
-        self._start = start
-        self._end = end
+        super(Capture, self).__init__(start, end)
         self._captured = capture
