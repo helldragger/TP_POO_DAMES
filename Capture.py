@@ -1,3 +1,5 @@
 class Capture:
-    def __init__(self, pion):
-        self._pion = pion
+    def __init__(self, start, capture, end):
+        self._start = start
+        self._end = end
+        self._captured = capture

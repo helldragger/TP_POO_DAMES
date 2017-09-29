@@ -8,12 +8,12 @@ def run():
     while True:
         print("Game state")
         board.to_lines()
-        print("Coups disponibles")
+        print("Mouvements disponibles:")
         moves = []
-        i = 1
+        i = 0
         for row in board._board:
             for case in row:
-                if case == " ":
+                if case in [" ", "."]:
                     continue
                 if (case._color == "B" and is_white) \
                     or (case._color == "N" and not is_white):
@@ -22,9 +22,21 @@ def run():
                         print(i, "from", case._pos ,"to", move.get_end())
                         i += 1
                         moves.append(move)
+        print("Captures disponibles:")
+        for row in board._board:
+            for case in row:
+                if case in [" ", "."]:
+                    continue
+                if (case._color == "B" and is_white) \
+                    or (case._color == "N" and not is_white):
+                    nxt_moves = case.captures(board)
+                    for move in nxt_moves:
+                        print(i, "from", case._pos, "to", move._end)
+                        i += 1
+                        moves.append(move)
 
         mv = int(input("Enter one of the correct propositions: "))
-        while not (len(moves) - 1) > mv > 0:
+        while not (len(moves) - 1) >= mv >= 0:
             mv = int(input("Enter one of the correct propositions: "))
 
         board.move(moves[mv])
